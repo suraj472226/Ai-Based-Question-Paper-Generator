@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>Question Paper Generator</title>
+</head>
+<body>
+    <h1>Question Paper Generator</h1>
+
+    <!-- Form to input the topic and number of questions -->
+    <form id="questionForm">
+        <label for="topic">Topic:</label>
+        <input type="text" id="topic" required>
+        <label for="num_questions">Number of Questions:</label>
+        <input type="number" id="num_questions" value="5" required>
+        <button type="submit">Generate Questions</button>
+    </form>
+
+    <!-- Heading for the generated questions -->
+    <h2 id="generatedHeading" style="display: none;">Generated Questions:</h2>
+    <div id="questions"></div>
+
+    <!-- Button to download the questions as a PDF -->
+    <button id="downloadPdf" style="display: none;">Download PDF</button>
+
+    <script>
+        // Handle the question generation form submission
+        document.getElementById('questionForm').addEventListener('submit', async function (e) {
+            e.preventDefault();  // Prevent the default form submission
+            
+            const topic = document.getElementById('topic').value;
+            const numQuestions = document.getElementById('num_questions').value;
+
+            // Send POST request to the Flask backend to generate questions
+            const response = await fetch('/generate_questions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ topic, num_questions: numQuestions })  // Send data as JSON
+            });
+
+            const data = await response.json();
+            const questionsDiv = document.getElementById('questions');
+            const generatedHeading = document.getElementById('generatedHeading');
+            
+            questionsDiv.innerHTML = '';  // Clear previous content
+            
+            if (data.questions) {
+                // Show the heading when questions are generated
+                generatedHeading.style.display = 'block';
+
+                // Create a table for displaying questions
+                const table = document.createElement('table');
+                const headerRow = document.createElement('tr');
+
+                // Create headers for the table
+                const questionNumberHeader = document.createElement('th');
+                questionNumberHeader.textContent = 'No.';
+                const questionTextHeader = document.createElement('th');
+                questionTextHeader.textContent = 'Question';
+
+                headerRow.appendChild(questionNumberHeader);
+                headerRow.appendChild(questionTextHeader);
+                table.appendChild(headerRow);
+
+                // Add questions as rows
+                data.questions.forEach((question, index) => {
+                    const row = document.createElement('tr');
+
+                    const questionNumberCell = document.createElement('td');
+                    questionNumberCell.textContent = index + 1;
+
+                    const questionTextCell = document.createElement('td');
+                    questionTextCell.textContent = question;
+
+                    row.appendChild(questionNumberCell);
+                    row.appendChild(questionTextCell);
+                    table.appendChild(row);
+                });
+
+                // Append the table to the questionsDiv
+                questionsDiv.appendChild(table);
+
+                // Show the download PDF button
+                const downloadBtn = document.getElementById('downloadPdf');
+                downloadBtn.style.display = 'block';
+
+                // Handle the PDF generation and download
+                downloadBtn.onclick = async function () {
+                    const pdfResponse = await fetch('/generate_pdf', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ topic, questions: data.questions })
+                    });
+                    const blob = await pdfResponse.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = `${topic}_questions.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                };
+            } else {
+                // If no questions are returned, hide the heading
+                generatedHeading.style.display = 'none';
+                questionsDiv.textContent = data.error || 'An error occurred';
+            }
+        });
+    </script>
+</body>
+</html>

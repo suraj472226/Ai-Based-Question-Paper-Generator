@@ -1,0 +1,80 @@
+/* General styling */
+body {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 15pt;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 20pt;
+    color: #4a90e2;  /* Subtle blue color */
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 10px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers */
+th {
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid #ddd;
+}
+
+/* Table cells */
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+/* Alternating row colors for better readability */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Number column */
+th:first-child, td:first-child {
+    width: 5%;
+    text-align: center;
+    font-weight: bold;
+    background-color: #eaeaea;  /* Light gray background for number column */
+}
+
+/* Question column */
+th:last-child, td:last-child {
+    width: 95%;
+    text-align: left;
+    padding-left: 15px;  /* Add padding for readability */
+}
+
+/* Table border and shadow */
+table {
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+/* Footer styling (optional) */
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 10pt;
+    color: #777;
+}

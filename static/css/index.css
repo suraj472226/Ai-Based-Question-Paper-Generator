@@ -1,0 +1,252 @@
+/* Resetting default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: url("./image.png");
+                   
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Main title styling */
+h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 1.2s ease;
+}
+
+/* Form Styling */
+form {
+    background: rgb(157, 116, 239);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: inline-block;
+    animation: fadeInUp 1.5s ease;
+    width: 30%; /* Increased width for a wider form */
+    max-width: 800px; /* Added max width to limit expansion */
+}
+
+/* Label Styling */
+label {
+    font-size: 1.5rem;
+    color: black; /* Changed color for a more vibrant feel */
+    display: block;
+    margin-bottom: 10px;
+    text-align: left; /* Align text to left for a cleaner look */
+}
+
+/* Input Field Styling */
+input[type="text"],
+input[type="number"] {
+    padding: 15px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    width: 90%; /* Made inputs wider */
+    display: block;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.7); /* Added subtle background color */
+    color: #333;
+}
+
+/* Input Hover and Focus Effects */
+input[type="text"]:focus,
+input[type="number"]:focus {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    background: linear-gradient(45deg, #42a5f5, #478ed1); /* New blue gradient */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    margin-top: 30px;
+}
+
+/* Submit Button Hover Effect */
+button[type="submit"]:hover {
+    background: linear-gradient(45deg, #478ed1, #42a5f5); /* Reverse gradient on hover */
+    transform: translateY(-7px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Form Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Generated Questions Section */
+h2 {
+    margin-top: 20px;
+    font-size: 2.5rem;
+    color: #ffeb3b;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    animation: fadeInDown 1.5s ease;
+}
+
+/* Table Styling for Questions */
+#questions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    animation: fadeInUp 2s ease;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table th {
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffeb3b;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+table td {
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: calc(100% - 30px);
+    }
+}
+
+
+/* Button Styling */
+#downloadPdf {
+    padding: 12px 24px;                /* Top/Bottom and Left/Right padding */
+    font-size: 16px;                   /* Font size */
+    background-color: #4a90e2;        /* Button color */
+    color: white;                      /* Text color */
+    border: none;                      /* Remove default border */
+    border-radius: 5px;               /* Rounded corners */
+    cursor: pointer;                   /* Cursor changes to pointer on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+    display: inline-block;             /* Display as inline-block for proper padding */
+    text-align: center;                /* Center text */
+    text-decoration: none;             /* Remove underline */
+}
+
+/* Hover Effect */
+#downloadPdf:hover {
+    background-color: #357ab8;        /* Darker shade on hover */
+    transform: translateY(-2px);      /* Lift effect on hover */
+}
+
+/* Focus Effect */
+#downloadPdf:focus {
+    outline: none;                     /* Remove outline on focus */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5); /* Blue outline on focus */
+}
